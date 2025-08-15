@@ -1,4 +1,3 @@
-import React from "react";
 import ReactPaginate from "react-paginate";
 import css from "./Pagination.module.css";
 
@@ -8,11 +7,7 @@ interface PaginationProps {
   currentPage: number;
 }
 
-const Pagination: React.FC<PaginationProps> = ({
-  pageCount,
-  onPageChange,
-  currentPage,
-}) => {
+export default function Pagination({ pageCount, onPageChange, currentPage }: PaginationProps) {
   return (
     <ReactPaginate
       breakLabel="..."
@@ -33,4 +28,4 @@ const Pagination: React.FC<PaginationProps> = ({
   );
 };
 
-export default Pagination;
+

@@ -1,4 +1,3 @@
-import React from "react";
 import css from "./SearchBox.module.css";
 
 interface SearchBoxProps {
@@ -6,7 +5,7 @@ interface SearchBoxProps {
   value: string;
 }
 
-const SearchBox: React.FC<SearchBoxProps> = ({ onSearchChange, value }) => {
+export default function SearchBox ({ onSearchChange, value } : SearchBoxProps) {
   return (
     <input
       className={css.input}
@@ -18,4 +17,4 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearchChange, value }) => {
   );
 };
 
-export default SearchBox;
+

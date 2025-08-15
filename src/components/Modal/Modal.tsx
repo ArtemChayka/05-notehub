@@ -15,7 +15,7 @@ if (!modalRoot) {
   document.body.appendChild(div);
 }
 
-const Modal: React.FC<ModalProps> = ({ children, onClose }) => {
+export default function Modal ({ children, onClose }:ModalProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -48,4 +48,3 @@ const Modal: React.FC<ModalProps> = ({ children, onClose }) => {
   );
 };
 
-export default Modal;

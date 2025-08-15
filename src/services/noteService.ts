@@ -17,7 +17,6 @@ const instance = axios.create({
   },
 });
 
-// Інтерфейси для відповідей та параметрів
 export interface FetchNotesParams {
   page?: number;
   perPage?: number;

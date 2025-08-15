@@ -9,7 +9,7 @@ interface NoteFormProps {
   onCancel: () => void;
 }
 
-const NoteForm: React.FC<NoteFormProps> = ({ onSubmit, onCancel }) => {
+export default function NoteForm ({ onSubmit, onCancel }:NoteFormProps) {
   const initialValues = {
     title: "",
     content: "",
@@ -91,4 +91,4 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit, onCancel }) => {
   );
 };
 
-export default NoteForm;
+

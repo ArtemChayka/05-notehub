@@ -1,4 +1,3 @@
-import React from "react";
 import { Note } from "../../types/note";
 import css from "./NoteList.module.css";
 
@@ -7,7 +6,7 @@ interface NoteListProps {
   onDelete: (id: string) => void;
 }
 
-const NoteList: React.FC<NoteListProps> = ({ notes, onDelete }) => {
+export default function NoteList ({ notes, onDelete }: NoteListProps) {
   return (
     <ul className={css.list}>
       {notes.map((note) => (
@@ -25,5 +24,3 @@ const NoteList: React.FC<NoteListProps> = ({ notes, onDelete }) => {
     </ul>
   );
 };
-
-export default NoteList;
