@@ -1,5 +1,11 @@
-import { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  keepPreviousData,
+  QueryClient,
+} from "@tanstack/react-query";
 import { useDebounce } from "use-debounce";
 import css from "./App.module.css";
 import NoteList from "../NoteList/NoteList";
@@ -12,6 +18,7 @@ import {
   deleteNote,
   createNote,
   CreateNotePayload,
+  FetchNotesResponse, 
 } from "../../services/noteService";
 
 export default function App() {
@@ -21,22 +28,33 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const queryClientInstance = useQueryClient();
 
-  const { data, isLoading, isError, error } = useQuery({
+
+
+  useEffect(() => {
+    setPage(1);
+  }, [debouncedSearchTerm]);
+
+  const { data, isLoading, isError, error } = useQuery<
+    FetchNotesResponse,
+    Error
+  >({
     queryKey: ["notes", page, debouncedSearchTerm],
-    queryFn: () => fetchNotes({ page: page, search: debouncedSearchTerm }),
+    queryFn: () => fetchNotes({ page, search: debouncedSearchTerm }),
+    placeholderData: keepPreviousData,
   });
 
   const deleteMutation = useMutation({
-    mutationFn: deleteNote,
+    mutationFn: deleteNote, 
     onSuccess: () => {
-      queryClientInstance.invalidateQueries({ queryKey: ["notes"] });
+      queryClientInstance.invalidateQueries({ queryKey: ["notes"] }); 
     },
   });
+// console.log(deleteMutation);
 
   const createMutation = useMutation({
-    mutationFn: createNote,
+    mutationFn: createNote, 
     onSuccess: () => {
-      queryClientInstance.invalidateQueries({ queryKey: ["notes"] });
+      queryClientInstance.invalidateQueries({ queryKey: ["notes"] }); 
       setIsModalOpen(false);
     },
   });

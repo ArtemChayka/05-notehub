@@ -25,7 +25,6 @@ export interface FetchNotesParams {
 
 export interface FetchNotesResponse {
   notes: Note[];
-  totalNotes: number;
   totalPages: number;
 }
 
@@ -47,6 +46,8 @@ export const fetchNotes = async ({
       search,
     },
   });
+  // console.log(data);
+  
   return data;
 };
 
